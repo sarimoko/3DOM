@@ -1,32 +1,129 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>#3DOM</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --bg-color: #050508;
+            --text-glow: #ff0055;
+            --accent-glow: #00f0ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: black;
-            margin: 200px;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle, rgba(255, 0, 85, 0.05) 0%, transparent 70%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
+            padding: 2rem;
         }
-        h3, p {
-          color: white;
-          text-align: center;
-          position: relative;
+
+        /* Better Text Treatment with Intense Glows */
+        h1, h3 {
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            text-align: center;
+            line-height: 1.2;
+            z-index: 10;
         }
+
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 3rem;
+            margin-top: 2rem;
+            text-shadow: 0 0 10px var(--text-glow), 0 0 20px var(--text-glow);
+            animation: textPulse 2s ease-in-out infinite alternate;
+        }
+
+        /* Image Container & Animation Pipeline */
+        .img-container {
+            position: relative;
+            max-width: 570px; /* Based on your original negative margins */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         img {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          margin-left: -285px;
-          margin-top: -190px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            /* Constant organic tech-pulse animation */
+            animation: techPulse 3s ease-in-out infinite alternate;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.2));
+        }
+
+        /* Subtle glitch artifact transformation on hover */
+        img:hover {
+            cursor: pointer;
+            animation: glitchSkew 0.4s steps(2) infinite;
+            filter: drop-shadow(-5px 0 var(--text-glow)) drop-shadow(5px 0 var(--accent-glow)) contrast(1.2);
+        }
+
+        /* Keyframe Animations */
+        @keyframes techPulse {
+            0% {
+                transform: scale(0.98);
+                filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.15));
+            }
+            100% {
+                transform: scale(1.02);
+                filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.4));
+            }
+        }
+
+        @keyframes textPulse {
+            0% { text-shadow: 0 0 10px var(--text-glow), 0 0 20px var(--text-glow); }
+            100% { text-shadow: 0 0 15px var(--text-glow), 0 0 35px var(--text-glow), 0 0 50px var(--text-glow); }
+        }
+
+        @keyframes glitchSkew {
+            0% { transform: skewX(0deg) scale(1.02); }
+            50% { transform: skewX(-3deg) scale(1.04) translateY(-2px); }
+            100% { transform: skewX(3deg) scale(1.01) translateY(2px); }
+        }
+
+        /* Responsive scaling for mobile monitors */
+        @media(max-width: 768px) {
+            h1 { font-size: 1.75rem; }
+            h3 { font-size: 2rem; }
         }
     </style>
-  </head>
+</head>
+<body>
 
-  <body>
     <h1>You may take my viewers...</h1>
-      <img src="RAID.png" alt="RAID!!!">
-    <h3>...but we'll never take their #3DOM!!!</h3>
-  </body>
+
+    <div class="img-container">
+        <img src="RAID.png" alt="RAID!!!">
+    </div>
+
+    <h3>...but you'll never take their #3DOM!!!</h3>
+
+</body>
 </html>
